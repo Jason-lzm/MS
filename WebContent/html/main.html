@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>任务系统首页</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link type="text/css" rel="stylesheet" href="../css/main.css"
+	media="all" />
+<script type="text/javascript" src="../js/myjs.js"></script>
+<script type="text/javascript" src="../js/main_html.js"></script>
+<script type="text/javascript" src="../js/config.js"></script>
+</head>
+<body onload="listMainMenu();">
+	<div id="wrapper">
+		<div id="container">
+			<div id="scene">
+				<img src="../images/scene.jpg" alt="" />
+				<h1>任务流程系统</h1>
+				<div id="scale_area">
+					<div id="scale_knob">&raquo; Welcome! &laquo;</div>
+				</div>
+				<div id="menu">
+					<div class="holder">
+						<a href="main.html">网站首页</a>
+					</div>
+					<div class="holder">
+						<a href="#页面导航">页面导航</a>
+					</div>
+					<div class="holder">
+						<a href="http://localhost:8088/MS/visit/logout">退出系统</a>
+					</div>
+				</div>
+			</div>
+			<div id="content" >
+				<div id="col_left" >
+					<div class="post" style="height:600px;">
+						<div class="meta"></div>
+						<div class="comment"></div>
+						<iframe src="http://localhost:8088/MS/html/index.html"
+							id="iframepage" frameborder="0" scrolling="no" marginheight="0"
+							style="height:100%;width:100%;" marginwidth="0"></iframe>
+					</div>
+				</div>
+				<div id="col_right">
+					<div id="search_box">
+						<form action="http://www.baidu.com/" method="post">
+							<div>
+								<input type="text" name="search" />
+							</div>
+							<div class="button_wrapper">
+								<input type="submit" value="Search" class="button" />
+							</div>
+							<div class="clear"></div>
+						</form>
+					</div>
+					<div id="sidebar" style="height:531px;">
+						<h2>
+							<a name="页面导航">页面导航</a>
+						</h2>
+						<ul>
+							<div id="menus"></div>
+						</ul>
+						<div class="clear"></div>
+					</div>
+				</div>
+				<div class="clear"> </div>
+			</div>
+			<div id="footer">
+				<div class="clear"></div>
+				<br />
+				<hr />
+				<p class="credit">任务流程系统</p>
+				<br />
+			</div>
+		</div>
+	</div>
+</body>
+</html>

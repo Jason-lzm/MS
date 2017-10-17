@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qi.mapper.PersonMapper" >
+  <resultMap id="BaseResultMap" type="com.qi.model.Person" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="head" property="head" jdbcType="VARCHAR" />
+    <result column="isLogin" property="islogin" jdbcType="CHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    id, name, password, phone, email, address, head, isLogin
+  </sql>
+  
+  <!--根据用户名查找用户信息-->
+	<select id="selectByName" parameterType="string" resultType="Person">
+		select 
+		<include refid="Base_Column_List" /> 
+		from person where name = #{name}
+	</select>
+  
+  <!--根据用户id查找用户信息-->
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from person
+    where id = #{id,jdbcType=INTEGER}
+   </select>
+    
+   <!--分页查找用户信息，master查找全部，manager按照负责人查找-->
+  <select id="selectByPage" resultMap="BaseResultMap" parameterType="map" >
+    select 
+    <include refid="Base_Column_List" />
+    from person 
+    <where>
+		<if test="head!=null">
+			head=#{head}
+		</if>
+	</where>
+    limit #{offset},#{pagesize}
+  </select>
+  
+   <!--查找全部用户-->
+  <select id="selectAllPerson" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from person 
+  </select>
+  
+   <!--查找子用户-->
+  <select id="selectAllByHead" resultMap="BaseResultMap" parameterType="string">
+    select 
+    <include refid="Base_Column_List" />
+    from person where head = #{head}
+  </select>
+  
+  <!--master按照身份查找总数，manager按照负责人查找总数-->
+  <select id="selectTotalCount" resultType="java.lang.Integer" parameterType="map" >
+    select count(*) from person 
+	<where>
+		<if test="head!=null">
+			head=#{head}
+		</if>
+	</where>
+  </select>
+  
+  <!-- 删除用户 -->  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from person
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <!--添加用户-->
+  <insert id="insert" parameterType="com.qi.model.Person" >
+    insert into person (id, name, password, 
+      phone, email, address, 
+      head, isLogin)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{head,jdbcType=VARCHAR}, #{islogin,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qi.model.Person" >
+    insert into person
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="head != null" >
+        head,
+      </if>
+      <if test="islogin != null" >
+        isLogin,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="head != null" >
+        #{head,jdbcType=VARCHAR},
+      </if>
+      <if test="islogin != null" >
+        #{islogin,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qi.model.Person" >
+    update person
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="head != null" >
+        head = #{head,jdbcType=VARCHAR},
+      </if>
+      <if test="islogin != null" >
+        isLogin = #{islogin,jdbcType=CHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qi.model.Person" >
+    update person
+    set name = #{name,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      head = #{head,jdbcType=VARCHAR},
+      isLogin = #{islogin,jdbcType=CHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

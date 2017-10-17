@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link type="text/css" rel="stylesheet" href="/MS/css/iframe.css"
+	media="all" />
+<script type="text/javascript" src="/MS/js/myjs.js"></script>
+<script type="text/javascript" src="/MS/js/account/apply_html.js"></script>
+<script type="text/javascript" src="/MS/js/config.js"></script>
+</head>
+<body >
+	<div>
+		<h2 id="h2">物料采购申请</h2>
+		<form class="h">
+			<div>
+				<label>申请人:<span style="color: red">*</span></label> 
+				<input type="text" name="username" id="username" readonly="readonly" />
+			</div>
+			<div>
+				<label>物品名:<span style="color: red">*</span></label> 
+				<input type="text" name="goods" id="goods" maxlength="16" />
+			</div>
+			<div>
+				<label>数量:<span style="color: red">*</span></label> 
+				<input type="number" name="amount" id="amount" onblur="addTotal();" />
+			</div>
+			<div>
+				<label>单位:<span style="color: red">*</span></label> 
+				<select name="unit" id="unit">
+					<option value="个">个</option>
+					<option value="本">本</option>
+					<option value="条">条</option>
+					<option value="套">套</option>
+					<option value="包">包</option>
+					<option value="桶">桶</option>
+					<option value="斤">斤</option>
+					<option value="米">米</option>
+					<option value="颗">颗</option>
+					<option value="瓶">瓶</option>
+					<option value="头">头</option>
+					<option value="台">台</option>
+					<option value="只">只</option>
+					<option value="盒">盒</option>
+					<option value="把">把</option>
+					<option value="双">双</option>
+				</select>
+			</div>
+			<div>
+				<label>单价:<span style="color: red">*</span></label> 
+				<input type="number" name="price" id="price" onblur="addTotal();" />
+			</div>
+			<div>
+				<label>总价:<span style="color: red">*</span></label> 
+				<input type="number" name="total" id="total" readonly="readonly" />
+			</div>
+			<div>
+				<label>用途:<span style="color: red">*</span></label> 
+				<input type="text" name="usefor" id="usefor" maxlength="65" />
+			</div>
+			<div>
+				<label>申请日期:</label> 
+				<input type="text" name="askdate" id="askdate" readonly="readonly"/>
+			</div>
+			<div>
+				<label>申请状态:</label> 
+				<select name="state" id="state">
+					<option value="1">发送申请</option>
+				</select>
+			</div>
+			<div>
+				<label>添加备注:</label> 
+				<input type="text" name="memo" id="memo" />
+			</div>
+			<div>
+				<label id="warn">注意：<span style="color: red">*</span>选项为必填项
+				</label>
+				<div class="clear"></div>
+			</div>
+			<br />
+			<div>
+				<label></label>
+				<div class="clear" id="msg" style="color: red;"></div>
+			</div>
+			<div class="button_wrapper">
+				<input type="button" class="button" value="确认添加"
+					onclick="subApply();" />
+			</div>
+		</form>
+	</div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+* { margin: 0; padding: 0; border-width: 0; font-size: 10px; }
+* * { font-size: 1em; }
+hr { height: 1px; margin: 2em 0 1.5em 0; background: #425767; border-width: 0; }
+
+/*FORMS*/
+input { padding: .5em; background: #fff url(../images/input_bg.gif) bottom repeat-x; border: 1px solid #b0b5bd; border-bottom: 1px solid #757a82; font: 1.2em Lucida Sans Unicode, Trebuchet MS, Sans; color: #222; }
+input:focus { border-top: 1px solid #757a82; border-bottom: 1px solid #b0b5bd; font-weight: bold }
+select {width: 57%; padding: .5em; background: #fff url(../images/input_bg.gif) bottom repeat-x; border: 1px solid #b0b5bd; border-bottom: 1px solid #757a82; font: 1.2em Lucida Sans Unicode, Trebuchet MS, Sans; color: #222; }
+select:focus { border-top: 1px solid #757a82; border-bottom: 1px solid #b0b5bd; font-weight: bold }
+input.button { float: left; width: 100% !important; margin: 0 !important; padding: .5em; background:#b0b5bd url(../images/button_bg.gif) bottom repeat-x; border: 1px solid #fff; font: .8em verdana; font-weight: bold; text-align: center; color: #222; cursor: pointer; }
+input.button:hover { background: #b0b5bd url(../images/button_bg_hover.gif) top repeat-x; }
+label { font: 1.2em verdana; font-weight: bold; color: #7c7c7c; }
+textarea { width: 55%; padding: .6em; background: url(../images/input_bg.gif) bottom repeat-x; border: 1px solid #b0b5bd; border-bottom: 1px solid #757a82; font: 1.2em Lucida Sans Unicode, Trebuchet MS, Sans; color: #222; }
+textarea:focus { border-top: 1px solid #757a82; border-bottom: 1px solid #b0b5bd; font-weight: bold; }
+
+form.h input { float: left; width: 55%; margin-bottom: .5em; }
+form.h label { float: left; width: 40%; }
+form.h .button_wrapper { margin-top: 1em; }
+form.h div { margin-top: 1em; }
+
+/*CLASSES*/
+.button_wrapper { width: 15em; border: 1px solid #bfbfbf; float: left;margin-left:10px;}
+.clear { clear: both; }
+.left { float: left; }
+.right { float: right; }
+.underline { text-decoration: underline; }
+#d1{height:450px;}
+#d2{margin:50px auto;border: 1px solid #757a82;width:85%;height:60%;
+background: #edf3fa;}
+#d3{padding-top:20px;padding-left:20px;font:1.7em Calibri;}
+
+#h2 { margin-bottom: 1em; border-bottom: 1px solid #f0f0f0; font: 1.8em verdana; line-height: 2.2em; color: #656565; }

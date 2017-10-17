@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qi.mapper.RoleMenuMapper" >
+  <resultMap id="BaseResultMap" type="com.qi.model.RoleMenuKey" >
+    <id column="ROLE_NAME" property="roleName" jdbcType="VARCHAR" />
+    <id column="MENU_ID" property="menuId" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="com.qi.model.RoleMenuKey" >
+    delete from role_menu_rel
+    where ROLE_NAME = #{roleName,jdbcType=VARCHAR}
+      and MENU_ID = #{menuId,jdbcType=VARCHAR}
+  </delete>
+  
+  <select id="selectByKey" resultMap="BaseResultMap" parameterType="map">
+  	select * from role_menu_rel 
+  	where ROLE_NAME = #{ROLE_NAME} and MENU_ID = #{MENU_ID}
+  </select>
+  
+  <select id="selectByRoleName" resultMap="BaseResultMap" parameterType="string">
+  	select * from role_menu_rel 
+  	where ROLE_NAME = #{ROLE_NAME}
+  </select>
+  
+  
+  <select id="selectByMenuId" resultType="integer" parameterType="string">
+  	select count(*) from role_menu_rel where MENU_ID = #{MENU_ID}
+  </select>
+  
+  <insert id="insert" parameterType="com.qi.model.RoleMenuKey" >
+    insert into role_menu_rel (ROLE_NAME, MENU_ID)
+    values (#{roleName,jdbcType=VARCHAR}, #{menuId,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qi.model.RoleMenuKey" >
+    insert into role_menu_rel
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="roleName != null" >
+        ROLE_NAME,
+      </if>
+      <if test="menuId != null" >
+        MENU_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="roleName != null" >
+        #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="menuId != null" >
+        #{menuId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

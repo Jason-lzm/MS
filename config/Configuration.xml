@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<!--开启懒加载 -->
+	<settings>
+		<setting name="lazyLoadingEnabled" value="true"/>
+		<setting name="aggressiveLazyLoading" value="false"/>
+	</settings>
+
+	<!-- 实体类,简称 -设置别名 --> 
+	<typeAliases>
+		<typeAlias alias="Person" type="com.qi.model.Person"/>
+		<typeAlias alias="MenuInfo" type="com.qi.model.MenuInfo"/>
+		<typeAlias alias="Process" type="com.qi.model.Process"/>
+		<typeAlias alias="Role" type="com.qi.model.Role"/>
+		<typeAlias alias="RoleMenuKey" type="com.qi.model.RoleMenuKey"/>
+		<typeAlias alias="UserMenuKey" type="com.qi.model.UserMenuKey"/>
+	</typeAliases>
+	
+	 <!-- 实体接口映射资源 -->  
+    <!-- 
+        说明：如果xxMapper.xml配置文件放在和xxMapper.java统一目录下，mappers也可以省略，
+        因为org.mybatis.spring.mapper.MapperFactoryBean默认会去查找
+        与xxMapper.java相同目录和名称的xxMapper.xml 
+     
+    <mappers>  
+        <mapper resource="com/qi/mapper/xx.xml" />  
+    </mappers>
+	
+	--> 	
+</configuration>

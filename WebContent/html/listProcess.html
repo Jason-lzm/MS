@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link type="text/css" rel="stylesheet" href="../css/table.css"
+	media="all" />
+<script type="text/javascript" src="../js/myjs.js"></script>
+<script type="text/javascript" src="../js/ms.js"></script>
+<script type="text/javascript" src="../js/process.js"></script>
+</head>
+<body onload="listProcess();">
+	<div>
+		<h2 class="h2">查看流水记录</h2>
+		<form id="f1">
+			第
+			<input name="sub_page" id="sub_page" size="1" onblur="sub_process_page(this.value);" />页&nbsp;&nbsp;
+			<a id="pre_page" onclick="pre_process_page">上一页</a>
+			&nbsp;第|<span style="color:red;" id="page"></span>|页&nbsp;
+			<a id="next_page" onclick="next_process_page">下一页</a>
+			&nbsp;&nbsp;共|<span style="color:red;" id="total_page"></span>|页
+			<div style="float: right;">
+			每页显示|<span style="color:red;" id="page_size"></span>|条数据
+			</div>
+		</form>
+		<form id="f2" >
+			<table>
+				<tr>
+					<td>选项</td>
+					<td>序号</td>
+					<td>操作员</td>
+					<td>操作类型</td>
+					<td>操作对象</td>
+					<td>保存时间</td>
+				</tr>
+				<tr>
+						<td><input type="checkbox" name="delete" value="${person.id }" /></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+				</tr>
+				<tr >
+					<td colspan="10">
+						<input type="button" class="button" value="批量删除" onclick="deletePerson();" />
+						&nbsp;&nbsp;全选<input type="checkbox"  onclick="selectAll();">
+						&nbsp;&nbsp;反选<input type="checkbox"  onclick="selectOther();">
+						&nbsp;&nbsp;&nbsp;<span id="msg" style="color:red" ></span>
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body>
+</html>

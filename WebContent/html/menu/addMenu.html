@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link type="text/css" rel="stylesheet" href="../../css/iframe.css"
+	media="all" />
+<script type="text/javascript" src="../../js/myjs.js"></script>
+<script type="text/javascript" src="../../js/ms.js"></script>
+<script type="text/javascript" src="../../js/config.js"></script>
+<script type="text/javascript" src="../../js/menu/addMenu_html.js"></script>
+</head>
+<body >
+	<div>
+		<h2 id="h2">添加菜单</h2>
+		<form class="h">
+			<div>
+				<label>菜单类别:<span style="color: red">*</span></label> 
+				<select id="menu_type" >
+					<option value="0" selected="selected">添加主菜单</option>
+					<option value="1">添加子菜单</option>
+				</select>
+			</div>
+			<div id="selectByParent">
+				<label>菜单名:<span style="color: red">*</span></label> 
+				<input type="text" name="menu" id="menu1" maxlength="9"/>
+			</div>
+			<div id="selectByChild">
+				<div >
+					<label>上级菜单:<span style="color: red">*</span></label> 
+					<select id="highermenu">
+						<option value="none">请选择所属父菜单</option>
+					</select>
+				</div>
+				<div>
+					<label>菜单名:<span style="color: red">*</span></label> 
+					<input type="text" name="menu" id="menu2" maxlength="9"/>
+				</div>
+				<div>
+					<label>请求路径:<span style="color: red">*</span></label> 
+					<input type="text" name="url" id="url" />
+				</div>
+			</div>
+			<div>
+				<label id="warn">注意：<span style="color: red">*</span>选项为必填项
+				</label>
+				<div class="clear"></div>
+			</div>
+			<br />
+			<div>
+				<label></label>
+				<div class="clear" id="msg" style="color: red;"></div>
+			</div>
+			<div class="button_wrapper">
+				<input type="button" class="button" value="确认添加主菜单" id="sub_parent"
+					onclick="addParentMenu();" />
+				<input type="button" class="button" value="确认添加子菜单" id="sub_child"
+					onclick="addChildMenu();" />
+			</div>
+		</form>
+	</div>
+</body>
+</html>

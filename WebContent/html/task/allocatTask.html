@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link type="text/css" rel="stylesheet" href="/MS/css/iframe.css"
+	media="all" />
+<script type="text/javascript" src="/MS/js/myjs.js"></script>
+<script type="text/javascript" src="/MS/js/task/allocatTask_html.js"></script>
+<script type="text/javascript" src="/MS/js/config.js"></script>
+</head>
+<body >
+	<div>
+		<h2 id="h2">分配任务</h2>
+		<form class="h">
+			<div>
+				<label>负责人:<span style="color: red">*</span></label> 
+				<select name="userid" id="userid">
+					<option value="none">请选择</option>
+				</select>
+			</div>
+			<div>
+				<label>开始时间:<span style="color: red">*</span></label> 
+				<input type="datetime-local" name="starttime" id="starttime" value="2016-08-03T00:00 " />
+			</div>
+			<div>
+				<label>结束时间:<span style="color: red">*</span></label> 
+				<input type="datetime-local" name="endtime" id="endtime" value="2016-08-03T00:00 " />
+			</div>
+			<div>
+				<label>任务明细:<span style="color: red">*</span></label> 
+				<textarea name="content" id="content" ></textarea>
+			</div>
+			<div>
+				<label>涉及物品:</label>
+				<select name="goods" id="goods" onchange="selectGoodsDetail();">
+					<option value="">请选择</option>
+				</select> 
+			</div>
+			<div>
+				<label>物品数量:</label>
+				<input type="number" name="amount" id="amount" onblur="checkAmount();"/>
+				<input type="number" id="total_amount" hidden="true" />
+			</div>
+			<div>
+				<label>单位:</label>
+				<input type="text" name="unit" id="unit" readonly="readonly" />
+			</div>
+			<div>
+				<label>完成进度:</label> 
+				<select name="state" id="state">
+					<option value="1" selected="selected">未开始</option>
+				</select>
+			</div>
+			<div>
+				<label>备注说明:</label> 
+				<input type="text" name="memo" id="memo" />
+			</div>
+			<div>
+				<label id="warn">注意：<span style="color: red">*</span>选项为必填项
+				</label>
+				<div class="clear"></div>
+			</div>
+			<br />
+			<div>
+				<label></label>
+				<div class="clear" id="msg" style="color: red;"></div>
+			</div>
+			<div class="button_wrapper">
+				<input type="button" class="button" value="确认添加"
+					onclick="addTask();" />
+			</div>
+		</form>
+	</div>
+</body>
+</html>

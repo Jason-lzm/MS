@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	http://www.springframework.org/schema/mvc
+	http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+
+	
+	<!-- 注解扫描包 -->
+	<context:component-scan base-package="com.qi.*" />
+
+	<!-- 开启注解 -->
+	<mvc:annotation-driven>
+		<!-- 设置输出编码格式 -->
+		<mvc:message-converters>
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<constructor-arg>
+					<bean class="java.nio.charset.Charset" factory-method="forName">
+						<constructor-arg value="UTF-8" />
+					</bean>
+				</constructor-arg>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+
+	<!-- 配置静态资源，直接映射到对应的文件夹，不被DispatcherServlet处理，3.04新增功能，需要重新设置spring-mvc-3.0.xsd -->
+	<!-- <mvc:resources mapping="/images/**" location="/images/" /> -->
+	<!-- <mvc:resources mapping="/js/**" location="/js/" /> -->
+	<!-- <mvc:resources mapping="/css/**" location="/css/" /> -->
+	<!-- <mvc:resources mapping="/jsp/**" location="/WEB-INF/jsp/" /> -->
+
+	<!-- 开启默认处理 -->
+	<!-- 这样静态资源就可以访问了 -->
+	<mvc:default-servlet-handler />
+
+	<!-- 对象与json数据的转换 -->
+	<bean
+		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<bean
+					class="org.springframework.http.converter.StringHttpMessageConverter">
+					<property name="supportedMediaTypes">
+						<list>
+							<value>application/json;charset=UTF-8</value>
+						</list>
+					</property>
+				</bean>
+				<bean
+					class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+					<property name="objectMapper">
+						<bean class="com.fasterxml.jackson.databind.ObjectMapper">
+							<property name="dateFormat">
+								<bean class="java.text.SimpleDateFormat">
+									<constructor-arg type="java.lang.String" value="yyyy-MM-dd" />
+								</bean>
+							</property>
+						</bean>
+					</property>
+					<property name="supportedMediaTypes">
+						<list>
+							<value>application/json;charset=UTF-8</value>
+						</list>
+					</property>
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+
+	<!-- 定义ViewResolver组件, 实现根据视图标识获取JSP响应 -->
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<!-- View中用到的相关技术 -->
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView"></property>
+		<!-- 后缀 -->
+		<property name="suffix" value=".jsp"></property>
+		<!-- 前缀 -->
+		<property name="prefix" value="/jsp/"></property>
+	</bean>
+
+
+</beans>

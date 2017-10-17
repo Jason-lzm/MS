@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qi.mapper.MenuInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.qi.model.MenuInfo" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="MENU" property="menu" jdbcType="VARCHAR" />
+    <result column="URL" property="url" jdbcType="VARCHAR" />
+    <result column="HIGHERMENU" property="highermenu" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    ID, MENU, URL, HIGHERMENU
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from menu_info
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectByName" resultMap="BaseResultMap" parameterType="string" >
+    select 
+    <include refid="Base_Column_List" />
+    from menu_info
+    where menu = #{menu,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from menu_info
+  </select>
+  
+  <select id="selectParentAll" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from menu_info where highermenu is null
+  </select>
+  
+  <select id="selectByPage" resultMap="BaseResultMap" parameterType="map">
+    select 
+    <include refid="Base_Column_List" />
+    from menu_info
+    limit #{offset},#{pagesize}
+  </select>
+  
+  <select id="selectTableCount" resultType="integer">
+    select count(*) from menu_info
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from menu_info
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.qi.model.MenuInfo" >
+    insert into menu_info (ID, MENU, URL, 
+      HIGHERMENU)
+    values (#{id,jdbcType=INTEGER}, #{menu,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
+      #{highermenu,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qi.model.MenuInfo" >
+    insert into menu_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="menu != null" >
+        MENU,
+      </if>
+      <if test="url != null" >
+        URL,
+      </if>
+      <if test="highermenu != null" >
+        HIGHERMENU,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="menu != null" >
+        #{menu,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="highermenu != null" >
+        #{highermenu,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qi.model.MenuInfo">
+    update menu_info
+    <set >
+      <if test="menu != null" >
+        MENU = #{menu,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        URL = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="highermenu != null" >
+        HIGHERMENU = #{highermenu,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qi.model.MenuInfo" >
+    update menu_info
+    set MENU = #{menu,jdbcType=VARCHAR},
+      URL = #{url,jdbcType=VARCHAR},
+      HIGHERMENU = #{highermenu,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

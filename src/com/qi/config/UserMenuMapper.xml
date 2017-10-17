@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qi.mapper.UserMenuMapper" >
+  <resultMap id="BaseResultMap" type="com.qi.model.UserMenuKey" >
+    <id column="USER_ID" property="userId" jdbcType="VARCHAR" />
+    <id column="MENU_ID" property="menuId" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <select id="selectByKey" resultMap="BaseResultMap" parameterType="map">
+  	select * from user_menu_rel
+  	<where>
+  		<if test="userId!=null">
+  			USER_ID = #{USER_ID}
+  		</if>
+  		<if test="menuId!=null">
+  			and MENU_ID = #{MENU_ID}
+  		</if>
+  	</where> 
+  </select>
+  
+  <select id="selectByUserId" resultMap="BaseResultMap" parameterType="string">
+  	select * from user_menu_rel where USER_ID = #{userId,jdbcType=VARCHAR}
+  </select>
+  
+   <select id="selectByMenuId" resultType="integer" parameterType="string">
+  	select count(*) from user_menu_rel where MENU_ID = #{MENU_ID}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="com.qi.model.UserMenuKey" >
+    delete from user_menu_rel
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+      and MENU_ID = #{menuId,jdbcType=VARCHAR}
+  </delete>
+  
+  <insert id="insert" parameterType="com.qi.model.UserMenuKey" >
+    insert into user_menu_rel (USER_ID, MENU_ID)
+    values (#{userId,jdbcType=VARCHAR}, #{menuId,jdbcType=VARCHAR})
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.qi.model.UserMenuKey" >
+    insert into user_menu_rel
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+      <if test="menuId != null" >
+        MENU_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="menuId != null" >
+        #{menuId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qi.mapper.ProcessMapper" >
+  <resultMap id="BaseResultMap" type="com.qi.model.Process" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="operatorId" property="operatorid" jdbcType="INTEGER" />
+    <result column="operateType" property="operatetype" jdbcType="CHAR" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="operateTime" property="operatetime" jdbcType="DATE" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    id, operatorId, operateType, userId, operateTime
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from process
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectAll" resultMap="BaseResultMap" parameterType="map" >
+    select 
+    <include refid="Base_Column_List" />
+    from process
+    limit #{offset},#{pagesize}
+  </select>
+  
+  <select id="selectTableCount" resultType="java.lang.Integer">
+  	select count(*) from process
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from process
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insert" parameterType="com.qi.model.Process" >
+    insert into process (id, operatorId, operateType, 
+      userId, operateTime)
+    values (#{id,jdbcType=INTEGER}, #{operatorid,jdbcType=INTEGER}, #{operatetype,jdbcType=CHAR}, 
+      #{userid,jdbcType=INTEGER}, #{operatetime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qi.model.Process" >
+    insert into process
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="operatorid != null" >
+        operatorId,
+      </if>
+      <if test="operatetype != null" >
+        operateType,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="operatetime != null" >
+        operateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="operatorid != null" >
+        #{operatorid,jdbcType=INTEGER},
+      </if>
+      <if test="operatetype != null" >
+        #{operatetype,jdbcType=CHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="operatetime != null" >
+        #{operatetime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qi.model.Process" >
+    update process
+    <set >
+      <if test="operatorid != null" >
+        operatorId = #{operatorid,jdbcType=INTEGER},
+      </if>
+      <if test="operatetype != null" >
+        operateType = #{operatetype,jdbcType=CHAR},
+      </if>
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="operatetime != null" >
+        operateTime = #{operatetime,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qi.model.Process" >
+    update process
+    set operatorId = #{operatorid,jdbcType=INTEGER},
+      operateType = #{operatetype,jdbcType=CHAR},
+      userId = #{userid,jdbcType=INTEGER},
+      operateTime = #{operatetime,jdbcType=DATE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
